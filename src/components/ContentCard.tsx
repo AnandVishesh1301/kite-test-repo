@@ -4,9 +4,10 @@ interface ContentCardProps {
   title: string;
   children: React.ReactNode;
   variant?: 'default' | 'elevated';
+  footer?: React.ReactNode;
 }
 
-export function ContentCard({ title, children, variant = 'default' }: ContentCardProps) {
+export function ContentCard({ title, children, variant = 'default', footer }: ContentCardProps) {
   const baseClasses = "border rounded-lg p-4";
   const variantClasses = {
     default: "shadow-sm",
@@ -17,6 +18,7 @@ export function ContentCard({ title, children, variant = 'default' }: ContentCar
     <div className={`${baseClasses} ${variantClasses[variant]}`}>
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <div>{children}</div>
+      {footer && <div className="mt-3 pt-2 border-t text-sm text-gray-600">{footer}</div>}
     </div>
   );
 }
