@@ -37,3 +37,12 @@ export function normalizeVersion(v: string): string {
   const { major, minor, patch } = parseVersion(v);
   return `${major}.${minor}.${patch}`;
 }
+
+/**
+ * Returns a new version string with minor incremented and patch reset to 0.
+ * Added for webhook test.
+ */
+export function bumpMinorVersion(v: string): string {
+  const { major, minor } = parseVersion(v);
+  return `${major}.${minor + 1}.0`;
+}

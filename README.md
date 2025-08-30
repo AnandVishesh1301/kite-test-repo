@@ -9,6 +9,8 @@ Minor change: added `bumpPatchVersion` helper to version utilities.
 
 Another change: added `normalizeVersion` helper.
 
+Minor change: added `bumpMinorVersion` helper.
+
 
 
 
