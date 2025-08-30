@@ -4,7 +4,8 @@
   "description": "Test repository for Kite RAG functionality",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No tests specified\" && exit 0"
+  "test": "echo \"No tests specified\" && exit 0",
+  "features": "node -e \"console.log(require('./src/utils/featureFlags.ts').listEnabledFeatures?.())\""
   },
   "keywords": ["test", "rag", "kite"],
   "author": "Your Name",
