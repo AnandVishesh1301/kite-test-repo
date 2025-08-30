@@ -9,3 +9,5 @@ Additional change: exported `buildTimestamp` in `appConfig` for another webhook 
 Another change: added lightweight feature flag helpers in `src/utils/featureFlags.ts`.
 
 New change: added `randomId` helper in `src/utils/randomId.ts` and `npm run features` script.
+
+Another change: added `getEnvInfo` helper in `src/utils/envInfo.ts`.
