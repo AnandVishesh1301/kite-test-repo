@@ -86,3 +86,10 @@ export function toStringVersion(obj: { major: number; minor: number; patch: numb
   return `${obj.major}.${obj.minor}.${obj.patch}`;
 }
 
+/**
+ * Detects if a version string has a hyphenated pre-release (e.g., 1.2.3-beta.1).
+ */
+export function isPreRelease(v: string): boolean {
+  return /-/.test(v);
+}
+
