@@ -56,3 +56,33 @@ export function bumpMajorVersion(v: string): string {
   return `${major + 1}.0.0`;
 }
 
+/**
+ * Checks if a string is a valid simple numeric dot version (x.y.z).
+ */
+export function isValidVersion(v: string): boolean {
+  return /^\d+\.\d+\.\d+$/.test(v);
+}
+
+/**
+ * Returns just the major.minor portion of a version.
+ */
+export function majorMinor(v: string): string {
+  const { major, minor } = parseVersion(v);
+  return `${major}.${minor}`;
+}
+
+/**
+ * Splits a version string into tuple [major, minor, patch].
+ */
+export function splitVersion(v: string): [number, number, number] {
+  const { major, minor, patch } = parseVersion(v);
+  return [major, minor, patch];
+}
+
+/**
+ * Converts a version object back to string.
+ */
+export function toStringVersion(obj: { major: number; minor: number; patch: number }): string {
+  return `${obj.major}.${obj.minor}.${obj.patch}`;
+}
+

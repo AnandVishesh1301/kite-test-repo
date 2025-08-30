@@ -17,6 +17,8 @@ Minor change: added `isValidVersion` helper.
 
 Another change: added `majorMinor` helper.
 
+Minor change: added `splitVersion` and `toStringVersion` helpers.
+
 
 
 
