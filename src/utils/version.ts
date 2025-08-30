@@ -28,3 +28,12 @@ export function bumpPatchVersion(v: string): string {
   const { major, minor, patch } = parseVersion(v);
   return `${major}.${minor}.${patch + 1}`;
 }
+
+/**
+ * Normalizes a version string to 'major.minor.patch' form.
+ * Added for webhook test.
+ */
+export function normalizeVersion(v: string): string {
+  const { major, minor, patch } = parseVersion(v);
+  return `${major}.${minor}.${patch}`;
+}

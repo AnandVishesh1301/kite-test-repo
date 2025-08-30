@@ -7,6 +7,8 @@ Another change: added `compareVersions` helper alongside `parseVersion`.
 
 Minor change: added `bumpPatchVersion` helper to version utilities.
 
+Another change: added `normalizeVersion` helper.
+
 
 
 
