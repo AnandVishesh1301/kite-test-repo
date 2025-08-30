@@ -5,19 +5,6 @@ Minor change: added `parseVersion` helper in `src/utils/version.ts` for webhook 
 
 Another change: added `compareVersions` helper alongside `parseVersion`.
 
-Minor change: added `bumpPatchVersion` helper to version utilities.
-
-Another change: added `normalizeVersion` helper.
-
-Minor change: added `bumpMinorVersion` helper.
-
-Another change: added `bumpMajorVersion` helper.
-
-Minor change: added `isValidVersion` helper.
-
-Another change: added `majorMinor` helper.
-
-Minor change: added `splitVersion` and `toStringVersion` helpers.
 
 
 
