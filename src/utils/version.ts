@@ -1,16 +1,10 @@
-/**
- * Simple semantic version parser (very light) for webhook test.
- */
+
 export function parseVersion(v: string) {
   const [major, minor, patch] = v.split('.').map(n => parseInt(n, 10) || 0);
   return { major, minor, patch };
 }
 
-/**
- * Compares two semver-like version strings.
- * Returns -1 if a<b, 1 if a>b, 0 if equal.
- * Added for webhook test.
- */
+
 export function compareVersions(a: string, b: string): -1 | 0 | 1 {
   const va = parseVersion(a);
   const vb = parseVersion(b);
