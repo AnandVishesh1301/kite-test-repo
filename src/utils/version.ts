@@ -46,3 +46,12 @@ export function bumpMinorVersion(v: string): string {
   const { major, minor } = parseVersion(v);
   return `${major}.${minor + 1}.0`;
 }
+
+/**
+ * Returns a new version string with major incremented and minor/patch reset to 0.
+ * Added for webhook test.
+ */
+export function bumpMajorVersion(v: string): string {
+  const { major } = parseVersion(v);
+  return `${major + 1}.0.0`;
+}

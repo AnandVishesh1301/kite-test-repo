@@ -11,6 +11,8 @@ Another change: added `normalizeVersion` helper.
 
 Minor change: added `bumpMinorVersion` helper.
 
+Another change: added `bumpMajorVersion` helper.
+
 
 
 
