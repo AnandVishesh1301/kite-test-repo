@@ -15,6 +15,8 @@ Another change: added `bumpMajorVersion` helper.
 
 Minor change: added `isValidVersion` helper.
 
+Another change: added `majorMinor` helper.
+
 
 
 

@@ -63,3 +63,12 @@ export function bumpMajorVersion(v: string): string {
 export function isValidVersion(v: string): boolean {
   return /^\d+\.\d+\.\d+$/.test(v);
 }
+
+/**
+ * Returns just the major.minor portion of a version.
+ * Added for webhook test.
+ */
+export function majorMinor(v: string): string {
+  const { major, minor } = parseVersion(v);
+  return `${major}.${minor}`;
+}
