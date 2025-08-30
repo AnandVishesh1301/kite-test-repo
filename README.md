@@ -5,9 +5,7 @@ Minor change: added `parseVersion` helper in `src/utils/version.ts` for webhook 
 
 Another change: added `compareVersions` helper alongside `parseVersion`.
 
-Minor change: added `isPreRelease` helper.
-
-Another change: added `hasSameMajor` helper.
+.
 
 
 

@@ -14,10 +14,6 @@ export function compareVersions(a: string, b: string): -1 | 0 | 1 {
   return 0;
 }
 
-/**
- * Returns a new version string with patch incremented.
- * Added for webhook test.
- */
 export function bumpPatchVersion(v: string): string {
   const { major, minor, patch } = parseVersion(v);
   return `${major}.${minor}.${patch + 1}`;
