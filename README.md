@@ -7,6 +7,8 @@ Another change: added `compareVersions` helper alongside `parseVersion`.
 
 Minor change: added `isPreRelease` helper.
 
+Another change: added `hasSameMajor` helper.
+
 
 
 

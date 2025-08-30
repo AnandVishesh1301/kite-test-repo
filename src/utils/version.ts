@@ -93,3 +93,10 @@ export function isPreRelease(v: string): boolean {
   return /-/.test(v);
 }
 
+/**
+ * Checks if two versions share the same major number.
+ */
+export function hasSameMajor(a: string, b: string): boolean {
+  return parseVersion(a).major === parseVersion(b).major;
+}
+
