@@ -56,19 +56,3 @@ export function bumpMajorVersion(v: string): string {
   return `${major + 1}.0.0`;
 }
 
-/**
- * Checks if a string is a valid simple numeric dot version (x.y.z).
- * Added for webhook test.
- */
-export function isValidVersion(v: string): boolean {
-  return /^\d+\.\d+\.\d+$/.test(v);
-}
-
-/**
- * Returns just the major.minor portion of a version.
- * Added for webhook test.
- */
-export function majorMinor(v: string): string {
-  const { major, minor } = parseVersion(v);
-  return `${major}.${minor}`;
-}
