@@ -13,6 +13,8 @@ Minor change: added `bumpMinorVersion` helper.
 
 Another change: added `bumpMajorVersion` helper.
 
+Minor change: added `isValidVersion` helper.
+
 
 
 
