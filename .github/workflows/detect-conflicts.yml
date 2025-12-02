@@ -1,0 +1,85 @@
+name: Detect Merge Conflicts
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  detect-conflicts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: |
+          git fetch origin ${{ github.base_ref }}
+
+      - name: Check if PR is mergeable
+        id: check-mergeable
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            
+            console.log(`PR #${context.issue.number} mergeable status: ${pr.data.mergeable}`);
+            console.log(`Mergeable state: ${pr.data.mergeable_state}`);
+            
+            if (pr.data.mergeable === false || pr.data.mergeable_state === 'dirty') {
+              core.setOutput('has_conflict', 'true');
+            } else if (pr.data.mergeable === null) {
+              core.setOutput('has_conflict', 'unknown');
+            } else {
+              core.setOutput('has_conflict', 'false');
+            }
+
+      - name: Test merge locally to detect conflicts
+        if: steps.check-mergeable.outputs.has_conflict == 'unknown'
+        id: test-merge
+        run: |
+          set +e
+          git merge --no-commit --no-ff origin/${{ github.base_ref }} 2>&1
+          MERGE_EXIT=$?
+          git merge --abort 2>/dev/null || true
+          set -e
+          
+          if [ $MERGE_EXIT -ne 0 ]; then
+            echo "conflict_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "conflict_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post conflict comment on PR
+        if: steps.check-mergeable.outputs.has_conflict == 'true' || steps.test-merge.outputs.conflict_detected == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚨 **Merge Conflict Detected**\n\nThis PR has conflicts with the \`${{ github.base_ref }}\` branch.\n\nYou can:\n- Fix locally and push\n- Or ask Poke to tag Tembo`
+            });
+
+      - name: Post clean merge comment on PR
+        if: steps.check-mergeable.outputs.has_conflict == 'false'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ **This PR can be merged cleanly!**\n\nNo conflicts detected with \`${{ github.base_ref }}\`.`
+            });
